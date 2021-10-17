@@ -10,10 +10,10 @@ sys.path.append(parentdir)
 from textDataBase import DatabaseManager
 ##
 
-database = DatabaseManager.CreateTextDatabase(2)
+database = DatabaseManager.CreateTextDatabase(100)
 
-repeatInfinitely = True
-while repeatInfinitely == True:
+repeat = 'y'
+while repeat == 'y' or repeat == 'Y':
 	name = input("\n\nPerson's name -> ")
 	securityCode = input("Person's security code -> ")
 	gender = input("Person's gender -> ")
@@ -22,7 +22,7 @@ while repeatInfinitely == True:
 	personOne = Person.Person(name, securityCode, gender, address)
 	personOne.showBasicInformations()
 	
-	try:
-		database.saveObjectContent(personOne)
-	except Exception as ex:
-		print(ex)
+	database.saveObjectContent(personOne)
+	
+	print('Do you want to save another person in the database <Y\\N> ?')
+	repeat = input('->')
